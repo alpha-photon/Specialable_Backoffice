@@ -20,7 +20,10 @@ export const getAllUsers = async (params?: {
   blocked?: string;
 }) => {
   const response = await api.get('/admin/users', { params });
-  return response.data;
+  return {
+    ...response.data,
+    users: response.data.data || response.data.users || [],
+  };
 };
 
 export const getUserById = async (id: string) => {

@@ -59,8 +59,8 @@ export const getAllSubscriptions = async (params?: {
 }): Promise<{ subscriptions: Subscription[]; pagination: any }> => {
   const response = await api.get('/admin/subscriptions', { params });
   return {
-    subscriptions: response.data.data,
-    pagination: response.data.pagination,
+    subscriptions: response.data.data || [],
+    pagination: response.data.pagination || { total: 0, limit: 20, skip: 0, hasMore: false },
   };
 };
 

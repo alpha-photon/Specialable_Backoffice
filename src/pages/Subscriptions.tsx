@@ -275,7 +275,7 @@ export default function Subscriptions() {
         <CardContent>
           {isLoading ? (
             <div className="text-center py-8">Loading...</div>
-          ) : subscriptionsData?.subscriptions.length === 0 ? (
+          ) : !subscriptionsData?.subscriptions || subscriptionsData.subscriptions.length === 0 ? (
             <div className="text-center py-8 text-muted-foreground">No subscriptions found</div>
           ) : (
             <div className="overflow-x-auto">
@@ -292,7 +292,7 @@ export default function Subscriptions() {
                   </tr>
                 </thead>
                 <tbody>
-                  {subscriptionsData?.subscriptions.map((sub: Subscription) => (
+                  {(subscriptionsData.subscriptions || []).map((sub: Subscription) => (
                     <tr key={sub._id} className="border-b hover:bg-muted/50">
                       <td className="p-3">
                         <div>
@@ -343,8 +343,8 @@ export default function Subscriptions() {
           {subscriptionsData?.pagination && (
             <div className="flex items-center justify-between mt-4">
               <div className="text-sm text-muted-foreground">
-                Showing {(page - 1) * 20 + 1} to {Math.min(page * 20, subscriptionsData.pagination.total)} of{' '}
-                {subscriptionsData.pagination.total}
+                Showing {(page - 1) * 20 + 1} to {Math.min(page * 20, subscriptionsData.pagination?.total || 0)} of{' '}
+                {subscriptionsData.pagination?.total || 0}
               </div>
               <div className="flex gap-2">
                 <Button
@@ -356,7 +356,7 @@ export default function Subscriptions() {
                 </Button>
                 <Button
                   variant="outline"
-                  disabled={!subscriptionsData.pagination.hasMore}
+                  disabled={!subscriptionsData.pagination?.hasMore}
                   onClick={() => setPage(page + 1)}
                 >
                   Next
@@ -385,7 +385,7 @@ export default function Subscriptions() {
                   <SelectValue placeholder="Select user" />
                 </SelectTrigger>
                 <SelectContent>
-                  {usersData?.users.map((user: any) => (
+                  {(usersData?.users || []).map((user: any) => (
                     <SelectItem key={user._id} value={user._id}>
                       {user.name} ({user.email})
                     </SelectItem>
