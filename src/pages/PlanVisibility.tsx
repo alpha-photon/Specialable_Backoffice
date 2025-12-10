@@ -276,7 +276,7 @@ export default function PlanVisibility() {
                               <Label>Visible</Label>
                               <Switch
                                 checked={plan.isVisible}
-                                onCheckedChange={(checked) =>
+                                onCheckedChange={(checked: boolean) =>
                                   setEditingPlan({ ...plan, isVisible: checked })
                                 }
                               />
@@ -285,7 +285,7 @@ export default function PlanVisibility() {
                               <Label>Default Plan</Label>
                               <Switch
                                 checked={plan.isDefault}
-                                onCheckedChange={(checked) =>
+                                onCheckedChange={(checked: boolean) =>
                                   setEditingPlan({ ...plan, isDefault: checked })
                                 }
                               />
@@ -390,14 +390,14 @@ export default function PlanVisibility() {
               <Label>Visible</Label>
               <Switch
                 checked={createForm.isVisible}
-                onCheckedChange={(checked) => setCreateForm({ ...createForm, isVisible: checked })}
+                onCheckedChange={(checked: boolean) => setCreateForm({ ...createForm, isVisible: checked })}
               />
             </div>
             <div className="flex items-center justify-between">
               <Label>Default Plan</Label>
               <Switch
                 checked={createForm.isDefault}
-                onCheckedChange={(checked) => setCreateForm({ ...createForm, isDefault: checked })}
+                onCheckedChange={(checked: boolean) => setCreateForm({ ...createForm, isDefault: checked })}
               />
             </div>
             <div>

@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getAllAppointments } from '../services/admin.service';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import { formatDate, formatDateTime } from '../lib/utils';
+import { formatDateTime } from '../lib/utils';
 
 export default function Appointments() {
   const [page, setPage] = useState(1);

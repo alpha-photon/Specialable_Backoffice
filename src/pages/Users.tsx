@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getAllUsers, blockUser, unblockUser, deleteUser, updateUser, bulkBlockUsers, bulkUnblockUsers, exportUsers } from '../services/admin.service';
+import { getAllUsers, blockUser, unblockUser, deleteUser, bulkBlockUsers, bulkUnblockUsers, exportUsers } from '../services/admin.service';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { formatDate } from '../lib/utils';

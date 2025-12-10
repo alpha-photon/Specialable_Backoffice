@@ -6,7 +6,6 @@ import {
   updateSubscription,
   cancelSubscription,
   assignSubscription,
-  getUserSubscriptions,
   type Subscription,
 } from '../services/subscription.service';
 import { getAllUsers } from '../services/admin.service';
@@ -14,15 +13,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button';
 import { formatDate } from '../lib/utils';
 import {
-  Search,
-  Filter,
   X,
   Edit,
   Ban,
   Plus,
-  DollarSign,
-  Users,
-  Calendar,
   CheckCircle,
   XCircle,
   Clock,
@@ -50,7 +44,6 @@ export default function Subscriptions() {
   const [status, setStatus] = useState('');
   const [userType, setUserType] = useState('');
   const [plan, setPlan] = useState('');
-  const [search, setSearch] = useState('');
   const [showAssignDialog, setShowAssignDialog] = useState(false);
   const [showEditDialog, setShowEditDialog] = useState(false);
   const [selectedSubscription, setSelectedSubscription] = useState<Subscription | null>(null);
@@ -386,7 +379,7 @@ export default function Subscriptions() {
               <Label>User</Label>
               <Select
                 value={assignForm.userId}
-                onValueChange={(value) => setAssignForm({ ...assignForm, userId: value })}
+                onValueChange={(value: string) => setAssignForm({ ...assignForm, userId: value })}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select user" />
@@ -469,8 +462,8 @@ export default function Subscriptions() {
                 <Label>Status</Label>
                 <Select
                   value={selectedSubscription.status}
-                  onValueChange={(value) =>
-                    setSelectedSubscription({ ...selectedSubscription, status: value as any })
+                  onValueChange={(value: string) =>
+                    setSelectedSubscription({ ...selectedSubscription, status: value as 'active' | 'expired' | 'cancelled' | 'pending' })
                   }
                 >
                   <SelectTrigger>
@@ -488,8 +481,8 @@ export default function Subscriptions() {
                 <Label>Plan</Label>
                 <Select
                   value={selectedSubscription.plan}
-                  onValueChange={(value) =>
-                    setSelectedSubscription({ ...selectedSubscription, plan: value as any })
+                  onValueChange={(value: string) =>
+                    setSelectedSubscription({ ...selectedSubscription, plan: value as 'monthly' | 'quarterly' | 'yearly' })
                   }
                 >
                   <SelectTrigger>
