@@ -211,12 +211,12 @@ export default function Subscriptions() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
               <Label>Status</Label>
-              <Select value={status} onValueChange={setStatus}>
+              <Select value={status || 'all'} onValueChange={(value) => setStatus(value === 'all' ? '' : value)}>
                 <SelectTrigger>
                   <SelectValue placeholder="All Status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Status</SelectItem>
+                  <SelectItem value="all">All Status</SelectItem>
                   <SelectItem value="active">Active</SelectItem>
                   <SelectItem value="expired">Expired</SelectItem>
                   <SelectItem value="cancelled">Cancelled</SelectItem>
@@ -226,12 +226,12 @@ export default function Subscriptions() {
             </div>
             <div>
               <Label>User Type</Label>
-              <Select value={userType} onValueChange={setUserType}>
+              <Select value={userType || 'all'} onValueChange={(value) => setUserType(value === 'all' ? '' : value)}>
                 <SelectTrigger>
                   <SelectValue placeholder="All Types" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Types</SelectItem>
+                  <SelectItem value="all">All Types</SelectItem>
                   <SelectItem value="doctor">Doctor</SelectItem>
                   <SelectItem value="parent">Parent</SelectItem>
                 </SelectContent>
@@ -239,12 +239,12 @@ export default function Subscriptions() {
             </div>
             <div>
               <Label>Plan</Label>
-              <Select value={plan} onValueChange={setPlan}>
+              <Select value={plan || 'all'} onValueChange={(value) => setPlan(value === 'all' ? '' : value)}>
                 <SelectTrigger>
                   <SelectValue placeholder="All Plans" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Plans</SelectItem>
+                  <SelectItem value="all">All Plans</SelectItem>
                   <SelectItem value="monthly">Monthly</SelectItem>
                   <SelectItem value="quarterly">Quarterly</SelectItem>
                   <SelectItem value="yearly">Yearly</SelectItem>
@@ -512,7 +512,7 @@ export default function Subscriptions() {
                 <Label>Auto Renew</Label>
                 <Select
                   value={selectedSubscription.autoRenew ? 'true' : 'false'}
-                  onValueChange={(value) =>
+                  onValueChange={(value: string) =>
                     setSelectedSubscription({
                       ...selectedSubscription,
                       autoRenew: value === 'true',

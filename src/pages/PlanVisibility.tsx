@@ -145,15 +145,15 @@ export default function PlanVisibility() {
           <div className="flex items-center gap-4">
             <div className="flex-1">
               <Label>Filter by User Type</Label>
-              <Select value={userTypeFilter} onValueChange={setUserTypeFilter}>
+              <Select value={userTypeFilter || 'all'} onValueChange={(value: string) => setUserTypeFilter(value === 'all' ? '' : value)}>
                 <SelectTrigger>
                   <SelectValue placeholder="All User Types" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All User Types</SelectItem>
+                  <SelectItem value="all">All User Types</SelectItem>
                   <SelectItem value="doctor">Doctor</SelectItem>
                   <SelectItem value="parent">Parent</SelectItem>
-                  <SelectItem value="all">All</SelectItem>
+                  <SelectItem value="all_types">All</SelectItem>
                 </SelectContent>
               </Select>
             </div>
